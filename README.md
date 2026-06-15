@@ -77,18 +77,25 @@ SPA routing is configured via `public/_redirects` and `netlify.toml`.
 
 ```
 src/
-  api/openLibrary.ts      # API fetch + data mapping
-  components/
-    BooksDataGrid.tsx     # Main DataGrid
-    AppLayout.tsx         # AppBar + theme toggle
-    cells/BookCells.tsx   # Custom cell renderers
-    modals/               # Row detail & image preview dialogs
-    ErrorBoundary.tsx     # Class component error boundary
-  hooks/
-    useBooks.ts           # Data fetching
-    useGridPersistence.ts # localStorage for grid state
-    useThemeMode.ts       # Theme mode persistence
-  theme/theme.ts          # MUI theme factory
+  app/                          # App shell and providers
+    App.tsx
+    AppRoot.tsx
+    providers/
+      AppProviders.tsx          # Query + Theme composition
+      QueryProvider.tsx
+  shared/
+    constants/                  # storageKeys, UI strings (RU)
+    hooks/                        # useLocalStorage, useDisclosure
+    lib/                          # queryClient
+    components/                   # AppLayout, ErrorBoundary
+  features/
+    theme/                        # Theme toggle, context, MUI theme
+    books/
+      api/                        # openLibraryApi, booksMapper, queryKeys
+      model/                      # types, dto, constants
+      hooks/                      # useBooks, useBooksGridState, useBookColumns, useBookDialogs
+      components/                 # BooksPage, BooksDataGrid, cells, modals
+  main.tsx
 ```
 
 ## API

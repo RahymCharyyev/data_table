@@ -22,7 +22,18 @@ Interactive book catalog built with React and Material UI DataGrid. Data is fetc
 - Vite
 - [MUI Material](https://mui.com/material-ui/)
 - [MUI X DataGrid](https://mui.com/x/react-data-grid/)
+- TanStack Query for server state
 - Open Library Search API
+
+## Applied Agent Skills
+
+Improvements from `.agents/skills/`:
+
+- **vercel-react-best-practices** — lazy-loaded `BooksDataGrid`, versioned `localStorage`, `startTransition` in dialogs
+- **vercel-composition-patterns** — React 19 `use()` instead of `useContext`, memoized grid cells
+- **web-design-guidelines** — skip link, `aria-*`, keyboard cover activation, `Intl` formatters, `color-scheme`, reduced motion
+- **vercel-react-view-transitions** — native shared-element morph for cover preview via `viewTransitionName` + CSS recipes
+- **writing-guidelines** — clearer README structure
 
 ## Getting Started
 

@@ -4,7 +4,6 @@ import { PAGE_SIZE_OPTIONS } from '../model/constants'
 import { useBookColumns } from '../hooks/useBookColumns'
 import { useBookDialogs } from '../hooks/useBookDialogs'
 import { useBooksGridState } from '../hooks/useBooksGridState'
-import { STRINGS } from '../../../shared/constants/strings'
 import type { BookRow } from '../model/types'
 import { ImagePreviewDialog } from './modals/ImagePreviewDialog'
 import { RowDetailDialog } from './modals/RowDetailDialog'
@@ -79,8 +78,7 @@ export function BooksDataGrid({ books }: BooksDataGridProps) {
       />
 
       <ImagePreviewDialog
-        imageUrl={imageDialog.data?.coverUrlLarge ?? null}
-        alt={imageDialog.data?.title ?? STRINGS.altCover}
+        book={imageDialog.data}
         open={imageDialog.isOpen}
         onClose={imageDialog.close}
       />

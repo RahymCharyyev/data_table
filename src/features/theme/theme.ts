@@ -14,5 +14,14 @@ export function createAppTheme(mode: 'light' | 'dark') {
     typography: {
       fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          html: {
+            colorScheme: mode,
+          },
+        },
+      },
+    },
   })
 }

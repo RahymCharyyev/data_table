@@ -1,9 +1,11 @@
-import { Typography } from '@mui/material'
+import { memo } from 'react'
+import Typography from '@mui/material/Typography'
 import type { GridRenderCellParams } from '@mui/x-data-grid'
+import { formatPublishYear } from '../../../../shared/lib/format'
 import type { BookRow } from '../../model/types'
 import { cellContainerSx } from './cellStyles'
 
-export function DateCell({ value }: GridRenderCellParams<BookRow, Date>) {
+function DateCellComponent({ value }: GridRenderCellParams<BookRow, Date>) {
   const date =
     value instanceof Date
       ? value
@@ -20,7 +22,9 @@ export function DateCell({ value }: GridRenderCellParams<BookRow, Date>) {
         fontSize: '1rem',
       }}
     >
-      {date.getFullYear()}
+      {formatPublishYear(date)}
     </Typography>
   )
 }
+
+export const DateCell = memo(DateCellComponent)

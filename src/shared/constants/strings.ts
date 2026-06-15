@@ -1,6 +1,8 @@
 export const STRINGS = {
   appTitle: 'Каталог книг',
   booksCount: (n: number) => `${n} книг`,
+  skipToContent: 'Перейти к содержимому',
+  loading: 'Загрузка…',
   columns: {
     cover: 'Обложка',
     description: 'Описание',
@@ -20,6 +22,14 @@ export const STRINGS = {
     retry: 'Повторить',
     tryAgain: 'Попробовать снова',
   },
-  theme: { switchToDark: 'Тёмная тема', switchToLight: 'Светлая тема' },
+  theme: {
+    switchToDark: 'Тёмная тема',
+    switchToLight: 'Светлая тема',
+    toggleAria: 'Переключить тему',
+  },
+  dialog: {
+    close: 'Закрыть',
+    openCover: (title: string) => `Открыть обложку: ${title}`,
+  },
   altCover: 'Обложка книги',
 } as const

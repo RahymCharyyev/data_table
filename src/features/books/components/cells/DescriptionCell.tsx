@@ -1,8 +1,10 @@
-import { Box, Typography } from '@mui/material'
+import { memo } from 'react'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import type { GridRenderCellParams } from '@mui/x-data-grid'
 import type { BookRow } from '../../model/types'
 
-export function DescriptionCell({ row }: GridRenderCellParams<BookRow>) {
+function DescriptionCellComponent({ row }: GridRenderCellParams<BookRow>) {
   return (
     <Box
       sx={{
@@ -13,6 +15,7 @@ export function DescriptionCell({ row }: GridRenderCellParams<BookRow>) {
         py: 1,
         whiteSpace: 'normal',
         lineHeight: 1.5,
+        minWidth: 0,
       }}
     >
       <Typography variant="body2" sx={{ fontWeight: 600, mb: 0.5 }}>
@@ -24,11 +27,13 @@ export function DescriptionCell({ row }: GridRenderCellParams<BookRow>) {
       >
         {row.authors}
       </Typography>
-      {row.firstSentence && (
+      {row.firstSentence ? (
         <Typography variant="caption" color="text.secondary">
           {row.firstSentence}
         </Typography>
-      )}
+      ) : null}
     </Box>
   )
 }
+
+export const DescriptionCell = memo(DescriptionCellComponent)

@@ -6,6 +6,7 @@ import type {
 } from '@mui/x-data-grid'
 import { DEFAULT_PAGE_SIZE } from '../model/constants'
 import { STORAGE_KEYS } from '../../../shared/constants/storageKeys'
+import { readLegacyGridState } from '../../../shared/lib/migrateStorage'
 import { useLocalStorage } from '../../../shared/hooks/useLocalStorage'
 
 export interface PersistedGridState {
@@ -24,44 +25,28 @@ const DEFAULT_PAGINATION: GridPaginationModel = {
 const DEFAULT_VISIBILITY: GridColumnVisibilityModel = {}
 
 const DEBOUNCE_MS = 300
-
-function loadLegacyState(): Partial<PersistedGridState> {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEYS.gridState)
-    if (!raw) return {}
-
-    const parsed = JSON.parse(raw) as Partial<PersistedGridState>
-    if (parsed.sortModel !== undefined || parsed.filterModel !== undefined) {
-      return parsed
-    }
-  } catch {
-    // ignore
-  }
-  return {}
-}
-
-const legacyState = loadLegacyState()
+const legacyState = readLegacyGridState()
 
 export function useBooksGridState() {
   const [sortModel, setSortModel] = useLocalStorage<GridSortModel>(
-    `${STORAGE_KEYS.gridState}-sort`,
+    STORAGE_KEYS.gridSort,
     legacyState.sortModel ?? DEFAULT_SORT,
     DEBOUNCE_MS,
   )
   const [filterModel, setFilterModel] = useLocalStorage<GridFilterModel>(
-    `${STORAGE_KEYS.gridState}-filter`,
+    STORAGE_KEYS.gridFilter,
     legacyState.filterModel ?? DEFAULT_FILTER,
     DEBOUNCE_MS,
   )
   const [paginationModel, setPaginationModel] =
     useLocalStorage<GridPaginationModel>(
-      `${STORAGE_KEYS.gridState}-pagination`,
+      STORAGE_KEYS.gridPagination,
       legacyState.paginationModel ?? DEFAULT_PAGINATION,
       DEBOUNCE_MS,
     )
   const [columnVisibilityModel, setColumnVisibilityModel] =
     useLocalStorage<GridColumnVisibilityModel>(
-      `${STORAGE_KEYS.gridState}-visibility`,
+      STORAGE_KEYS.gridVisibility,
       legacyState.columnVisibilityModel ?? DEFAULT_VISIBILITY,
       DEBOUNCE_MS,
     )

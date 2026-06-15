@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { STORAGE_KEYS } from '../../shared/constants/storageKeys'
+import { readLegacyThemeMode } from '../../shared/lib/migrateStorage'
 import { useLocalStorage } from '../../shared/hooks/useLocalStorage'
 
 type ThemeMode = 'light' | 'dark'
@@ -9,15 +10,7 @@ function getSystemMode(): ThemeMode {
 }
 
 function getInitialMode(): ThemeMode {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEYS.themeMode)
-    if (stored === 'light' || stored === 'dark') {
-      return stored
-    }
-  } catch {
-    // ignore
-  }
-  return getSystemMode()
+  return readLegacyThemeMode() ?? getSystemMode()
 }
 
 export function useThemeMode() {

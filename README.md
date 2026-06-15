@@ -4,9 +4,7 @@ Interactive book catalog built with React and Material UI DataGrid. Data is fetc
 
 ## Live Demo
 
-> Deploy to Netlify and add your URL here.
->
-> Example: `https://6a2fd580c75c268729b2b7dc--mellifluous-fairy-a71237.netlify.app/`
+[https://mellifluous-fairy-a71237.netlify.app/](https://mellifluous-fairy-a71237.netlify.app/)
 
 ## Time Tracking
 
